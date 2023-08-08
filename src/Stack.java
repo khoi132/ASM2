@@ -18,15 +18,27 @@ public class Stack {
     }
 
     public void push(char item) {
-        if (!isFull()) {
-            stackArray[++top] = item;
+        try {
+            if (!isFull()) {
+                stackArray[++top] = item;
+            } else {
+                throw new IllegalStateException("Stack is full.");
+            }
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
     public char pop() {
-        if (!isEmpty()) {
-            return stackArray[top--];
+        try {
+            if (!isEmpty()) {
+                return stackArray[top--];
+            } else {
+                throw new IllegalStateException("Stack is empty.");
+            }
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
+            return '\0';
         }
-        return '\0';
     }
 }

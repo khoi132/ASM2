@@ -20,16 +20,28 @@ public class Queue {
     }
 
     public void enqueue(char item) {
-        if (!isFull()) {
-            queueArray[++rear] = item;
+        try {
+            if (!isFull()) {
+                queueArray[++rear] = item;
+            } else {
+                throw new IllegalStateException("Queue is full.");
+            }
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
     public char dequeue() {
-        if (!isEmpty()) {
-            char item = queueArray[front++];
-            return item;
+        try {
+            if (!isEmpty()) {
+                char item = queueArray[front++];
+                return item;
+            } else {
+                throw new IllegalStateException("Queue is empty.");
+            }
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
+            return '\0';
         }
-        return '\0';
     }
 }
